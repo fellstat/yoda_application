@@ -2,12 +2,47 @@ if(!file.exists("yoda_code")){
   setwd("..")
 }
 
+library(aws.s3)
+try(source("secret.R"))
+write_bucket <- Sys.getenv("TEST_BUCKET_WRITE")
+
+
 library(shiny)
 library(futile.logger)
 source("globals.R")
 
 USG_USERS = c("Agency", "Interagency", "Global Agency", "Global")
 PARTNER_USERS = c("Global Partner", "Partner")
+
+refresh_countries <- function(){
+  any_added <- FALSE
+  country_names <- list.dirs("application/countries", recursive = FALSE, full.names = FALSE)
+  buckets <- aws.s3::get_bucket(prefix = "system_yoda/",bucket = Sys.getenv("TEST_BUCKET_WRITE"))
+  files <- sapply(buckets, function(x) x$Key)
+  fnames <- sapply(str_split(files,"/"), function(x) x[[2]])
+  cnames <- sapply(str_split(fnames,"\\."), function(x) x[[1]])
+  dir.create("tmp__")
+  setwd("application/countries")
+  for(i in 1:length(cnames)){
+    if(!(cnames[i] %in% country_names)){
+      save_object(
+        bucket = write_bucket,
+        object = paste0("system_yoda/",cnames[i],".zip"), 
+        file = "../../tmp__/country_file.zip"
+      )
+      unzip("../../tmp__/country_file.zip")
+      any_added <- TRUE
+    }
+  }
+  for(i in seq_along(country_names)){
+    if(!(country_names[i] %in% cnames)){
+      unlink(country_names[i])
+    }
+  }
+  setwd("../..")
+  unlink("tmp__", recursive = TRUE)
+  any_added
+}
 
 shinyServer(function(input, output, session) {
   
@@ -34,6 +69,10 @@ shinyServer(function(input, output, session) {
   }
   
   main_ui <- function(){
+    any_added <- refresh_countries()
+    countries <<- "application/countries" %>% 
+      list.dirs(full.names = FALSE, recursive = FALSE) %>%
+      str_replace_all("_"," ")
     fluidPage(
       
       # Application title
@@ -45,7 +84,8 @@ shinyServer(function(input, output, session) {
           numericInput("max_diff", "Maximum Allowable % Change in # of Tests",20,0),
           numericInput("index_ratio", "% Change in Index Tests Per Non-Index Test",25, 0),
           textInput("run_name","Name of Run","My Run"),
-          actionButton("run","Run")
+          actionButton("run","Run"),
+          p(any_added)
         ),
         mainPanel(
           selectInput("outrun", "Run", runs),
@@ -63,7 +103,7 @@ shinyServer(function(input, output, session) {
   
   output$ui <- renderUI({
     if(!user_input$authenticated){
-      auth_ui()
+      main_ui()#auth_ui()
     }else{
       main_ui()      
     }
@@ -218,7 +258,7 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$refresh, {
-    runs <- dir("runs")
+    runs <<- dir("runs")
     updateSelectInput(session, "outrun", choices = runs, selected = input$outrun)
     refreshTrigger(rnorm(1))
   })
