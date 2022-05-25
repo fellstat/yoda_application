@@ -10,6 +10,7 @@ write_bucket <- Sys.getenv("TEST_BUCKET_WRITE")
 library(shiny)
 library(futile.logger)
 source("globals.R")
+source("s3-connect.R")
 
 USG_USERS = c("Agency", "Interagency", "Global Agency", "Global")
 PARTNER_USERS = c("Global Partner", "Partner")
@@ -94,8 +95,8 @@ shinyServer(function(input, output, session) {
           numericInput("max_diff", "Maximum Allowable % Change in # of Tests",20,0),
           numericInput("index_ratio", "% Change in Index Tests Per Non-Index Test",25, 0),
           textInput("run_name","Name of Run","My Run"),
-          actionButton("run","Run"),
-          p(any_added)
+          actionButton("run","Run")#,
+          #p(any_added)
         ),
         mainPanel(
           selectInput("outrun", "Run", runs),
@@ -113,7 +114,7 @@ shinyServer(function(input, output, session) {
   
   output$ui <- renderUI({
     if(!user_input$authenticated){
-      main_ui()#auth_ui()
+      auth_ui()#main_ui()#
     }else{
       main_ui()      
     }

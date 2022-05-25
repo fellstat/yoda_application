@@ -82,7 +82,8 @@ fname3 <- paste0(results_location, "allocations_by_psnu_modality_sex_age.csv")
 write.csv(allocations_by_psnu, file = fname3, row.names = FALSE)
 
 # requires Ckmeans.1d.dp and plotly
-rmarkdown::render('mer_report.Rmd')
+tt <- try(rmarkdown::render('mer_report.Rmd'))
+print(tt)
 file.copy("mer_report.html",paste0(results_location,"mer_report",".html"), overwrite = TRUE)
 
 print(paste0(out_dir,"output.zip"))
