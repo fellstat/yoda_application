@@ -14,6 +14,8 @@ source("globals.R")
 USG_USERS = c("Agency", "Interagency", "Global Agency", "Global")
 PARTNER_USERS = c("Global Partner", "Partner")
 
+
+
 refresh_countries <- function(){
   any_added <- FALSE
   country_names <- list.dirs("application/countries", recursive = FALSE, full.names = FALSE)
@@ -43,6 +45,14 @@ refresh_countries <- function(){
   unlink("tmp__", recursive = TRUE)
   any_added
 }
+
+if(!dir.exists("runs"))
+  dir.create("runs")
+if(!dir.exists("application"))
+  dir.create("application")
+if(!dir.exists("application/countries"))
+  dir.create("application/countries")
+
 
 shinyServer(function(input, output, session) {
   
