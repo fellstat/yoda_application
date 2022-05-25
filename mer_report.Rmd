@@ -17,6 +17,7 @@ library(tidyverse)
 library(ggplot2)
 library(knitr)
 library(xgboost)
+library(Ckmeans.1d.dp)
 
 knitr::opts_chunk$set(echo = FALSE)
 if(!exists("dat_analysis2")){
