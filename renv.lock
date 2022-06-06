@@ -80,6 +80,16 @@
         "vroom"
       ]
     },
+    "ISOweek": {
+      "Package": "ISOweek",
+      "Version": "0.6-2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "ad7e2b013b9379cb560caa9b168202f0",
+      "Requirements": [
+        "stringr"
+      ]
+    },
     "KernSmooth": {
       "Package": "KernSmooth",
       "Version": "2.23-20",
@@ -481,6 +491,44 @@
       "Hash": "36b67b5adf57b292923f5659f5f0c853",
       "Requirements": []
     },
+    "datapackr": {
+      "Package": "datapackr",
+      "Version": "5.2.2",
+      "Source": "GitHub",
+      "Remotes": "pepfar-datim/datimutils, pepfar-datim/datim-validation",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "datapackr",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRef": "master",
+      "RemoteSha": "2036c5182bc66460cf612f246760a7eae9a8b988",
+      "Hash": "447fbac8e31ea40dc9093ef37cbf69e8",
+      "Requirements": [
+        "assertthat",
+        "crayon",
+        "data.table",
+        "datimutils",
+        "datimvalidation",
+        "dplyr",
+        "fuzzyjoin",
+        "glue",
+        "httr",
+        "jsonlite",
+        "lubridate",
+        "magrittr",
+        "openxlsx",
+        "purrr",
+        "readr",
+        "readxl",
+        "rlang",
+        "stringi",
+        "stringr",
+        "tibble",
+        "tidyr",
+        "tidyselect",
+        "tidyxl"
+      ]
+    },
     "datimutils": {
       "Package": "datimutils",
       "Version": "0.3.0",
@@ -510,6 +558,37 @@
         "stringr",
         "tibble",
         "tidyr"
+      ]
+    },
+    "datimvalidation": {
+      "Package": "datimvalidation",
+      "Version": "1.1.2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "Remotes": "pepfar-datim/datimutils",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "datim-validation",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "ba276b072d6e74e86037506ce3ce1ff671922ce9",
+      "Hash": "d082e34734288928f3dfd65b06e669b5",
+      "Requirements": [
+        "ISOweek",
+        "R6",
+        "assertthat",
+        "datimutils",
+        "digest",
+        "dplyr",
+        "getPass",
+        "httr",
+        "jsonlite",
+        "lubridate",
+        "plyr",
+        "purrr",
+        "reshape2",
+        "rlist",
+        "stringr",
+        "xml2"
       ]
     },
     "dbplyr": {
@@ -741,6 +820,22 @@
       "Hash": "0d9bf02413ddc2bbe8da9ce369dcdd2b",
       "Requirements": []
     },
+    "fuzzyjoin": {
+      "Package": "fuzzyjoin",
+      "Version": "0.1.6",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "24af5fc67dbeaac6d776a8e6630aacd9",
+      "Requirements": [
+        "dplyr",
+        "geosphere",
+        "purrr",
+        "stringdist",
+        "stringr",
+        "tibble",
+        "tidyr"
+      ]
+    },
     "gargle": {
       "Package": "gargle",
       "Version": "1.2.0",
@@ -825,6 +920,16 @@
       "Hash": "be29054e97e756ade56d13a89c6d5243",
       "Requirements": [
         "Rcpp"
+      ]
+    },
+    "geosphere": {
+      "Package": "geosphere",
+      "Version": "1.5-14",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "1ce6e028f3d056dad1ea9c3c0a5444bf",
+      "Requirements": [
+        "sp"
       ]
     },
     "gert": {
@@ -1387,6 +1492,18 @@
         "askpass"
       ]
     },
+    "openxlsx": {
+      "Package": "openxlsx",
+      "Version": "4.2.5",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "fc5e0e85d3a1e4282f04f303627b7e72",
+      "Requirements": [
+        "Rcpp",
+        "stringi",
+        "zip"
+      ]
+    },
     "paws": {
       "Package": "paws",
       "Version": "0.1.12",
@@ -1571,6 +1688,16 @@
         "vctrs"
       ]
     },
+    "piton": {
+      "Package": "piton",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "e3e637a1b4deb944a58e9ab22662fc4e",
+      "Requirements": [
+        "Rcpp"
+      ]
+    },
     "pkgconfig": {
       "Package": "pkgconfig",
       "Version": "2.0.3",
@@ -1607,6 +1734,16 @@
         "tidyr",
         "vctrs",
         "viridisLite"
+      ]
+    },
+    "plyr": {
+      "Package": "plyr",
+      "Version": "1.8.6",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "ec0e5ab4e5f851f6ef32cd1d1984957f",
+      "Requirements": [
+        "Rcpp"
       ]
     },
     "prettyunits": {
@@ -1818,6 +1955,18 @@
         "rmarkdown",
         "rstudioapi",
         "withr"
+      ]
+    },
+    "reshape2": {
+      "Package": "reshape2",
+      "Version": "1.4.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "bb5996d0bd962d214a11140d77589917",
+      "Requirements": [
+        "Rcpp",
+        "plyr",
+        "stringr"
       ]
     },
     "rgeos": {
@@ -2077,6 +2226,14 @@
         "lattice"
       ]
     },
+    "stringdist": {
+      "Package": "stringdist",
+      "Version": "0.9.8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "c8b6c79c3b2d7d8475f3ab35cd99737b",
+      "Requirements": []
+    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.7.6",
@@ -2212,6 +2369,17 @@
         "tibble",
         "tidyr",
         "xml2"
+      ]
+    },
+    "tidyxl": {
+      "Package": "tidyxl",
+      "Version": "1.0.7",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "284994639932d61c0dc765c9aa401d1b",
+      "Requirements": [
+        "Rcpp",
+        "piton"
       ]
     },
     "tinytex": {
