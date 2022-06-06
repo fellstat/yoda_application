@@ -128,7 +128,7 @@ shinyServer(function(input, output, session) {
   # Login process ----
   observeEvent(input$login_button, {
     tryCatch({
-      datimutils::loginToDATIM(base_url = "https://www.datim.org/",
+      datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                username = input$user_name,
                                password = input$password,
                                d2_session_envir = parent.env(environment())
