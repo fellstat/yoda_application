@@ -128,7 +128,7 @@ shinyServer(function(input, output, session) {
   # Login process ----
   observeEvent(input$login_button, {
     tryCatch({
-      datimutils::loginToDATIM(base_url = "https://www.datim.org/",
+      datimutils::loginToDATIM(base_url = Sys.getenv("BASE_URL"),
                                username = input$user_name,
                                password = input$password,
                                d2_session_envir = parent.env(environment())
@@ -154,7 +154,7 @@ shinyServer(function(input, output, session) {
         
         # log them out
         Sys.sleep(3)
-        flog.info(paste0("User ", user_input$d2_session$me$userCredentials$username, " logged out."))
+        flog.info(paste0("User ",user$type," logged out."))
         user_input$authenticated  <-  FALSE
         user_input$user_name <- ""
         user_input$authorized  <-  FALSE
@@ -167,7 +167,7 @@ shinyServer(function(input, output, session) {
     },
     # This function throws an error if the login is not successful
     error = function(e) {
-      flog.info(paste0("User ", input$username, " login failed."), name = "datapack")
+      flog.info(paste0("User ", input$user_name, " login failed."), name = "datapack")
     }
     )
     
