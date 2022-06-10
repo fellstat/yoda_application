@@ -4,7 +4,7 @@ if(!file.exists("yoda_code")){
 
 library(aws.s3)
 try(source("secret.R"))
-write_bucket <- Sys.getenv("TEST_BUCKET_WRITE")
+write_bucket <- Sys.getenv("WRITE_S3")
 
 
 library(shiny)
@@ -20,7 +20,7 @@ PARTNER_USERS = c("Global Partner", "Partner")
 refresh_countries <- function(){
   any_added <- FALSE
   country_names <- list.dirs("application/countries", recursive = FALSE, full.names = FALSE)
-  buckets <- aws.s3::get_bucket(prefix = "system_yoda/",bucket = Sys.getenv("TEST_BUCKET_WRITE"))
+  buckets <- aws.s3::get_bucket(prefix = "system_yoda/",bucket = Sys.getenv("WRITE_S3"))
   files <- sapply(buckets, function(x) x$Key)
   fnames <- sapply(str_split(files,"/"), function(x) x[[2]])
   cnames <- sapply(str_split(fnames,"\\."), function(x) x[[1]])
