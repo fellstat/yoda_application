@@ -9,6 +9,7 @@ write_bucket <- Sys.getenv("WRITE_S3")
 
 library(shiny)
 library(futile.logger)
+library(pdaprules)
 source("globals.R")
 source("s3-connect.R")
 
@@ -21,6 +22,15 @@ refresh_countries <- function(){
   any_added <- FALSE
   country_names <- list.dirs("application/countries", recursive = FALSE, full.names = FALSE)
   buckets <- aws.s3::get_bucket(prefix = "system_yoda/",bucket = Sys.getenv("WRITE_S3"))
+  
+  # capture read event
+  send_event_to_s3(
+    app_name = Sys.getenv("SECRET_ID"), 
+    event_type = "S3_READ", 
+    user_input = user_input, 
+    log_bucket = Sys.getenv("LOG_BUCKET")
+  )
+  
   files <- sapply(buckets, function(x) x$Key)
   fnames <- sapply(str_split(files,"/"), function(x) x[[2]])
   cnames <- sapply(str_split(fnames,"\\."), function(x) x[[1]])
@@ -63,7 +73,8 @@ shinyServer(function(input, output, session) {
   user_input  <-  reactiveValues(authenticated = FALSE,
                                  status = "",
                                  d2_session = NULL,
-                                 memo_authorized = FALSE)
+                                 memo_authorized = FALSE,
+                                 uuid = NULL)
   
   auth_ui <- function(){
     wellPanel(
@@ -177,6 +188,13 @@ shinyServer(function(input, output, session) {
         user_input$d2_session  <-  d2_default_session$clone()
         d2_default_session <- NULL
         
+        # capture login event
+        send_event_to_s3(
+          app_name = Sys.getenv("SECRET_ID"), 
+          event_type = "LOGIN", 
+          user_input = user_input, 
+          log_bucket = Sys.getenv("LOG_BUCKET")
+        )
         
         # Need to check the user is a member of the PRIME Data Systems Group, COP Memo group, or a super user
         user_input$memo_authorized  <-
