@@ -775,14 +775,6 @@
         "iterators"
       ]
     },
-    "foreign": {
-      "Package": "foreign",
-      "Version": "0.8-81",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "74628ea7a3be5ee8a7b5bb0a8e84882e",
-      "Requirements": []
-    },
     "formatR": {
       "Package": "formatR",
       "Version": "1.11",
@@ -877,10 +869,10 @@
     },
     "geojsonio": {
       "Package": "geojsonio",
-      "Version": "0.9.4",
+      "Version": "0.11.3",
       "Source": "Repository",
       "Repository": "RSPM",
-      "Hash": "dd28191bf66c323c60d2c5352a0ca3ad",
+      "Hash": "f0424e67a22ce09aaf89d6bc2b7f9431",
       "Requirements": [
         "V8",
         "crul",
@@ -889,9 +881,7 @@
         "jqr",
         "jsonlite",
         "magrittr",
-        "maptools",
         "readr",
-        "rgeos",
         "sf",
         "sp"
       ]
@@ -1383,18 +1373,6 @@
       "Hash": "cdc87ecd81934679d1557633d8e1fe51",
       "Requirements": []
     },
-    "maptools": {
-      "Package": "maptools",
-      "Version": "1.1-2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "41e7097a7a02db986344eeca0d8a49ac",
-      "Requirements": [
-        "foreign",
-        "lattice",
-        "sp"
-      ]
-    },
     "markdown": {
       "Package": "markdown",
       "Version": "1.1",
@@ -1668,6 +1646,19 @@
         "paws.common"
       ]
     },
+    "pdaprules": {
+      "Package": "pdaprules",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "pdaprules",
+      "RemoteUsername": "pepfar-datim",
+      "RemoteRef": "main",
+      "RemoteSha": "b8a58023b4815007b95c060f68d91d67bcebbfc4",
+      "Hash": "39269fcc65baf8380dc4c6c7639a9c3d",
+      "Requirements": []
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.7.0",
@@ -1932,7 +1923,7 @@
       "Package": "renv",
       "Version": "0.15.4",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Hash": "c1078316e1d4f70275fc1ea60c0bc431",
       "Requirements": []
     },
@@ -1965,16 +1956,6 @@
         "Rcpp",
         "plyr",
         "stringr"
-      ]
-    },
-    "rgeos": {
-      "Package": "rgeos",
-      "Version": "0.5-9",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "7cfa4f73a070042ecf141d5c1d1bfcae",
-      "Requirements": [
-        "sp"
       ]
     },
     "rlang": {
