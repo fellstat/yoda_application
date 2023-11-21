@@ -24,12 +24,12 @@ refresh_countries <- function(){
   buckets <- aws.s3::get_bucket(prefix = "system_yoda/",bucket = Sys.getenv("WRITE_S3"))
   
   # capture read event
-  send_event_to_s3(
-    app_name = Sys.getenv("SECRET_ID"), 
-    event_type = "S3_READ", 
-    user_input = user_input, 
-    log_bucket = Sys.getenv("LOG_BUCKET")
-  )
+  # send_event_to_s3(
+  #   app_name = Sys.getenv("SECRET_ID"), 
+  #   event_type = "S3_READ", 
+  #   user_input = user_input, 
+  #   log_bucket = Sys.getenv("LOG_BUCKET")
+  # )
   
   files <- sapply(buckets, function(x) x$Key)
   fnames <- sapply(str_split(files,"/"), function(x) x[[2]])
@@ -189,6 +189,7 @@ shinyServer(function(input, output, session) {
         d2_default_session <- NULL
         
         # capture login event
+        user_input$uuid <- uuid::UUIDgenerate()
         send_event_to_s3(
           app_name = Sys.getenv("SECRET_ID"), 
           event_type = "LOGIN", 
